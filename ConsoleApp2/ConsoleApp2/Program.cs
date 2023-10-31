@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,48 +7,48 @@ class Program
 {
     static void Main()
     {
-        List<string> binaryValues = CzytajWartosc("C:\\binarne.txt");
-        List<string> sortedValues = Sortowanie(binaryValues);
+        List<string> wartosciBinarne = CzytajWartosc("G:\\binarne.txt");
+        List<string> posortowaneWartosci = Sortowanie(wartosciBinarne);
 
-        WyswietlNumery(sortedValues);
+        WyswietlNumery(posortowaneWartosci);
 
-        foreach (string binaryValue in binaryValues)
+        foreach (string binaryValue in wartosciBinarne)
         {
             ZnajdzWzorce(binaryValue, "1", 4);
             ZnajdzWzorce(binaryValue, "0", 4);
         }
 
-        List<string> allOnes = ZnajdzUnikalne(binaryValues, '1');
-        List<string> allZeros = ZnajdzUnikalne(binaryValues, '0');
+        List<string> sameJedynki = ZnajdzUnikalne(wartosciBinarne, '1');
+        List<string> sameZera = ZnajdzUnikalne(wartosciBinarne, '0');
 
-        Wyswietlanie("Wszystkie wartości zawierające tylko 1:", allOnes);
-        Wyswietlanie("Wszystkie wartości zawierające tylko 0:", allZeros);
+        Wyswietlanie("Wszystkie wartości zawierające tylko 1:", sameJedynki);
+        Wyswietlanie("Wszystkie wartości zawierające tylko 0:", sameZera);
     }
 
     static List<string> CzytajWartosc(string fileName)
     {
-        List<string> binaryValues = new List<string>();
+        List<string> watosciBinarne = new List<string>();
         using (StreamReader reader = new StreamReader(fileName))
         {
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                binaryValues.Add(line);
+                watosciBinarne.Add(line);
             }
         }
-        return binaryValues;
+        return watosciBinarne;
     }
 
-    static List<string> Sortowanie(List<string> values)
+    static List<string> Sortowanie(List<string> wartosci)
     {
-        return values.OrderByDescending(x => x.Length).ToList();
+        return wartosci.OrderByDescending(x => x.Length).ToList();
     }
 
-    static void WyswietlNumery(List<string> values)
+    static void WyswietlNumery(List<string> wartosci)
     {
-        for (int i = 0; i < values.Count; i++)
+        for (int i = 0; i < wartosci.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {values[i]}");
+            Console.WriteLine($"{i + 1}. {wartosci[i]}");
         }
     }
 
@@ -63,9 +63,9 @@ class Program
         }
     }
 
-    static List<string> ZnajdzUnikalne(List<string> values, char character)
+    static List<string> ZnajdzUnikalne(List<string> wartosci, char character)
     {
-        return values.Where(x => x.All(c => c == character)).ToList();
+        return wartosci.Where(x => x.All(c => c == character)).ToList();
     }
 
     static void Wyswietlanie(string title, List<string> values)
