@@ -12,10 +12,10 @@ class Program
 
         WyswietlNumery(posortowaneWartosci);
 
-        foreach (string binaryValue in wartosciBinarne)
+        foreach (string wartoscBinarna in wartosciBinarne)
         {
-            ZnajdzWzorce(binaryValue, "1", 4);
-            ZnajdzWzorce(binaryValue, "0", 4);
+            ZnajdzWzorce(wartoscBinarna, "1", 4);
+            ZnajdzWzorce(wartoscBinarna, "0", 4);
         }
 
         List<string> sameJedynki = ZnajdzUnikalne(wartosciBinarne, '1');
